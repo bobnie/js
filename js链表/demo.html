@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    </body>
+    <script>
+        function Node(element){
+            this.element = element;
+            this.next = null;
+        }
+        function LList(){
+            this.head = new Node('head');
+            this.find = find;
+            this.insert = insert;
+            this.remove = remove;
+            this.display = display;
+        }
+        function find(item){
+            var currNode = this.head;
+            while(currNode.element !== item){
+                currNode = currNode.next;
+            }
+            return currNode;
+        }
+        function insert(newelement,item){
+            var newNode = new Node(newelement),
+                current = this.find(item);
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+        function remove(item){
+            var current = this.find(item);
+            if(current.next !== null){
+                current.next = current.next.next;
+            }
+        }
+        function display(){
+            var currNode = this.head;
+            while(!(currNode.next == null)){
+                document.write(currNode.next.element + '&nbsp');
+                currNode = currNode.next;
+            }
+        }
+        var cities = new LList();
+        cities.insert("Conway", "head");
+        cities.insert("Russellville", "Conway");
+        cities.insert("Alma", "Russellville");
+        cities.display();
+        cities.remove("head");
+        cities.display();
+    </script>
+</html>
